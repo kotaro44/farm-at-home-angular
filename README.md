@@ -1,6 +1,6 @@
 # farm-at-home-angular
 
-This is an AngularJS Demo and it requires, to run the project you only need to clone the repository, once cloned inside the repo folder just run the command:
+This is an AngularJS Demo, to run the project you only need to clone the repository, once cloned inside the repo folder just run the command:
 
 ```javascript
 $ npm install
