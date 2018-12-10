@@ -26,6 +26,10 @@ window.App.controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
         return;
       }
 
+      /**
+       * When we are checking the website from a mobile device, the product detail will be shown in another view
+       * otherwise we will open the modal with its details.
+       */
       if (window.Device.isMobile) {
         $location.path('/list/' + productId);
       }

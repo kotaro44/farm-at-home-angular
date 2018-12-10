@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * GruntFile confguration for AngularJS
+ *
+ * Deafult server: http://localhost:80
+ *
+ * While serving the app, livereload will be listening to all JS and refresh your browser to include the changes,
+ * for any CSS modification the livereload will apply the changes in your browser without reloading
+ */
 module.exports = function exports(grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
