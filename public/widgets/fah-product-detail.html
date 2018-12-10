@@ -1,0 +1,37 @@
+<div class="row product-detail" ng-class="{'in-modal': inModal}">
+  <div class="detail-image-wrapper">
+    <span ng-if="!vm.isLoading">
+      <span ng-if="!vm.error">
+        <img ng-if="vm.product.image" ng-src="{{::vm.product.image}}" />
+        <img ng-if="!vm.product.image" src="images/u.png" />
+      </span>
+      <img ng-if="vm.error" src="images/e.png" />
+    </span>
+    <img ng-if="vm.isLoading" class="detail-img-placeholer" src="images/p.gif">
+  </div>
+  <div class="detail-content-wrapper">
+    <div class="detail-content">
+      <div class="detail-name-wrapper">
+        <span ng-if="!vm.isLoading">
+          <span ng-if="!vm.error">{{::vm.product.name || '???'}}</span>
+          <span ng-if="vm.error">Error</span>
+        </span>
+        <img ng-if="vm.isLoading" ng-src="{{::vm.loaderSrc}}">
+      </div>
+      <div class="detail-description-wrapper">
+        <span ng-if="!vm.isLoading">
+          <span ng-if="!vm.error">{{::vm.product.description || 'No Description'}}</span>
+          <span ng-if="vm.error">We are sorry, but we were not able to get data back from the server...</span>
+        </span>
+        <img ng-if="vm.isLoading" ng-src="{{::vm.loaderSrc}}">
+      </div>
+      <div class="detail-price-wrapper">
+        <span ng-if="!vm.isLoading && !vm.error">
+          {{::(vm.product.price | currency:vm.currency:2) || vm.currency + '??'}}
+        </span>
+        <img ng-if="vm.isLoading" ng-src="{{::vm.loaderSrc}}">
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="product-list-wrapper">
+  <div class="row product-list-wrapper" ng-if="!vm.error">
+    <span
+      ng-if="vm.isLoading"
+      ng-repeat="product in vm.placeholders track by $index"
+      class="column product-placeholder"
+      >
+      <span fah-product-card></span>
+    </span>
+    <span
+      ng-if="!vm.isLoading"
+      ng-repeat="product in vm.products track by $index"
+      ng-class="{'have-product-id': !!product.product_id}"
+      class="column product-wrapper"
+      >
+      <span fah-product-card="product" on-click="vm.goToProductDetail"></span>
+    </span>
+  </div>
+  <div ng-if="!vm.isLoading && vm.error" class="error-wrapper">
+    <img src="images/e.png" />
+    <div>We are so sorry, but there was an error trying to load the products...</div>
+  </div>
+  <div ng-if="!vm.isLoading && vm.products.length === 0" class="error-wrapper">
+    <img src="images/e.png" />
+    <div>We are so sorry, but seems there are no available products for now.</div>
+  </div>
+  <div class="modal-wrapper" ng-if="vm.productId">
+    <div class="modal-content-wrapper">
+      <div class="close-btn" ng-click="vm.closeModal()">X</div>
+      <div class="modal-content">
+        <span fah-product-detail="vm.productId" in-modal="true"></span>
+      </div>
+    </div>
+  </div>
+</div>
