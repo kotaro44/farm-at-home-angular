@@ -5,6 +5,6 @@
  */
 window.App.service('Constants', [function Constants() {
   return {
-    currency: '€',
+    currency: '$',
   };
 }]);

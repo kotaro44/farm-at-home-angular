@@ -1,4 +1,1 @@
-bower_components/
-node_modules/
-public/index.html
-build/
+node_modules

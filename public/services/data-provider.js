@@ -8,7 +8,7 @@
  *   - getProduct(id): returns the detailed information of the product with that matches the id
  */
 window.App.service('DataProvider', ['$q', function DataProvider($q) {
-	var host = 'https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/';
+	var host = window.location.origin + ':3000/';
 
 	function _getData(url, success, error) {
 		var xhr = new XMLHttpRequest();
@@ -26,11 +26,24 @@ window.App.service('DataProvider', ['$q', function DataProvider($q) {
 		xhr.send();
 	};
 
+  function _parseData(data) {
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        item.image = host + 'icons/' + item.productId;
+      });
+    }
+    else {
+      data.image = host + 'images/' + data.productId;
+    }
+
+    return data;
+  };
+
   return {
     getProducts: () => {
     	return $q((resolve, reject) => {
     		_getData('list', (data) => {
-    			resolve(data.products);
+    			resolve(_parseData(data.products));
     		}, (error) => {
     			reject(error);
     		});
@@ -38,8 +51,8 @@ window.App.service('DataProvider', ['$q', function DataProvider($q) {
     },
     getProduct: (id) => {
     	return $q((resolve, reject) => {
-    		_getData(id + '/detail', (data) => {
-    			resolve(data);
+    		_getData('product/' + id, (data) => {
+    			resolve(_parseData(data));
     		}, (error) => {
     			reject(error);
     		});

@@ -12,9 +12,10 @@ window.App.directive('fahProductDetail', ['Constants', 'DataProvider', '$locatio
       $scope.vm = {
         isLoading: true,
         currency: Constants.currency,
-        goToProductList: _goToProductList,
+        copy2clipboard: _copy2clipboard,
         loaderSrc: 'images/a' + ($scope.inModal ? '2': '') + '.gif',
         error: false,
+        copied: false,
       };
 
       init();
@@ -28,8 +29,19 @@ window.App.directive('fahProductDetail', ['Constants', 'DataProvider', '$locatio
         });
       };
 
-      function _goToProductList(productId) {
-        $location.path('/list');
+      function _copy2clipboard() {
+        var temp = document.createElement('textarea');
+
+        temp.value = window.location.origin + '/#/list/' + $scope.productId;
+        console.log(temp.value);
+        temp.setAttribute('readonly', '');
+        temp.style.position = 'absolute';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        $scope.vm.copied = true;
       };
     },
   };

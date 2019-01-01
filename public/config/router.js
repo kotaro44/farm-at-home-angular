@@ -1,7 +1,7 @@
 'use strict';
 
 window.App = angular.module('fahAngularJS', ['ngRoute'])
-  .config(['$routeProvider', ($routeProvider) => {
+  .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
     $routeProvider.when('/list/', {
       templateUrl: 'layouts/product-list.html',
       controller: 'ProductListCtrl',
@@ -13,4 +13,6 @@ window.App = angular.module('fahAngularJS', ['ngRoute'])
     .otherwise({
       redirectTo: '/list'
     });
+
+    $locationProvider.hashPrefix('');
   }]);

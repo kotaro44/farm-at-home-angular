@@ -6,8 +6,10 @@ window.App.controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
       isLoading: true,
       productId: null,
       goToProductDetail: _goToProductDetail,
+      openDetail: _openDetail,
       closeModal: _closeModal,
       placeholders: new Array(12),
+      search: '',
     };
 
     init();
@@ -26,16 +28,15 @@ window.App.controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
         return;
       }
 
-      /**
-       * When we are checking the website from a mobile device, the product detail will be shown in another view
-       * otherwise we will open the modal with its details.
-       */
-      if (window.Device.isMobile) {
-        $location.path('/list/' + productId);
+      $location.path('/list/' + productId);
+    };
+
+    function _openDetail(productId) {
+      if (!productId) {
+        return;
       }
-      else {
-        $scope.vm.productId = productId;
-      }
+
+      $scope.vm.productId = productId;
     };
 
     function _closeModal() {
