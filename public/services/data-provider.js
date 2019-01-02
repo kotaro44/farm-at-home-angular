@@ -7,56 +7,57 @@
  *   - getProducts(): returns a list of all available products
  *   - getProduct(id): returns the detailed information of the product with that matches the id
  */
-window.App.service('DataProvider', ['$q', function DataProvider($q) {
-	var host = window.location.origin + ':3000/';
+angular.module('fahAngularJS')
+  .service('DataProvider', ['$q', function DataProvider($q) {
+  	var host = window.location.origin + ':3000/';
 
-	function _getData(url, success, error) {
-		var xhr = new XMLHttpRequest();
+  	function _getData(url, success, error) {
+  		var xhr = new XMLHttpRequest();
 
-		xhr.onload = function onLoad() {
-			if (xhr.status === 200 ) {
-				success(JSON.parse(xhr.response));
-			}
-			else {
-				error(xhr.response);
-			}
-		};
+  		xhr.onload = function onLoad() {
+  			if (xhr.status === 200 ) {
+  				success(JSON.parse(xhr.response));
+  			}
+  			else {
+  				error(xhr.response);
+  			}
+  		};
 
-		xhr.open('GET', host + url);
-		xhr.send();
-	};
+  		xhr.open('GET', host + url);
+  		xhr.send();
+  	};
 
-  function _parseData(data) {
-    if (Array.isArray(data)) {
-      data.forEach(item => {
-        item.image = host + 'icons/' + item.productId;
-      });
-    }
-    else {
-      data.image = host + 'images/' + data.productId;
-    }
+    function _parseData(data) {
+      if (Array.isArray(data)) {
+        data.forEach(item => {
+          item.image = host + 'icons/' + item.productId;
+        });
+      }
+      else {
+        data.image = host + 'images/' + data.productId;
+      }
 
-    return data;
-  };
+      return data;
+    };
 
-  return {
-    getProducts: () => {
-    	return $q((resolve, reject) => {
-    		_getData('list', (data) => {
-    			resolve(_parseData(data.products));
-    		}, (error) => {
-    			reject(error);
-    		});
-    	});
-    },
-    getProduct: (id) => {
-    	return $q((resolve, reject) => {
-    		_getData('product/' + id, (data) => {
-    			resolve(_parseData(data));
-    		}, (error) => {
-    			reject(error);
-    		});
-    	});
-    },
-  };
-}]);
+    return {
+      getProducts: () => {
+      	return $q((resolve, reject) => {
+      		_getData('list', (data) => {
+      			resolve(_parseData(data.products));
+      		}, (error) => {
+      			reject(error);
+      		});
+      	});
+      },
+      getProduct: (id) => {
+      	return $q((resolve, reject) => {
+      		_getData('product/' + id, (data) => {
+      			resolve(_parseData(data));
+      		}, (error) => {
+      			reject(error);
+      		});
+      	});
+      },
+    };
+  }]);

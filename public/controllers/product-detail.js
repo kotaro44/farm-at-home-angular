@@ -1,6 +1,6 @@
 'use strict';
 
-window.App.controller('ProductDetailCtrl', ['$scope', '$routeParams',
+angular.module('fahAngularJS').controller('ProductDetailCtrl', ['$scope', '$routeParams',
   function ProductDetailCtrl($scope, $routeParams) {
     $scope.vm = {
       productId: null,

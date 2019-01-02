@@ -1,6 +1,6 @@
 'use strict';
 
-window.App.controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
+angular.module('fahAngularJS').controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
   function ProductListCtrl($scope, DataProvider, $location) {
     $scope.vm = {
       isLoading: true,
@@ -37,6 +37,7 @@ window.App.controller('ProductListCtrl', ['$scope', 'DataProvider', '$location',
       }
 
       $scope.vm.productId = productId;
+      window.scrollTo(0, 0);
     };
 
     function _closeModal() {

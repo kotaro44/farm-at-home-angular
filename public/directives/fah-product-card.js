@@ -1,6 +1,6 @@
 'use strict';
 
-window.App.directive('fahProductCard', ['Constants', (Constants) => {
+angular.module('fahAngularJS').directive('fahProductCard', ['Constants', (Constants) => {
   return {
     restrict: 'A',
     scope: {

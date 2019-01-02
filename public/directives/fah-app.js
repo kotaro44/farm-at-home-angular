@@ -1,6 +1,6 @@
 'use strict';
 
-window.App.directive('fahApp', [() => {
+angular.module('fahAngularJS').directive('fahApp', [() => {
   return {
     restrict: 'E',
     templateUrl: 'layouts/app.html',

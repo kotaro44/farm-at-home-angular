@@ -1,6 +1,6 @@
 <div class="product-list-wrapper">
   <input class="search-input" type="text" placeholder="Search by name..." ng-model="vm.search" />
-  <div class="row product-list-wrapper" ng-if="!vm.error">
+  <div class="row product-list" ng-if="!vm.error">
     <span
       ng-if="vm.isLoading"
       ng-repeat="product in vm.placeholders track by $index"
@@ -16,6 +16,9 @@
       >
       <span fah-product-card="product" on-click="vm.openDetail"></span>
     </span>
+  </div>
+  <div ng-if="!(vm.products | filter:vm.search:'name').length" class="error-wrapper">
+    <div>No products found!</div>
   </div>
   <div ng-if="!vm.isLoading && vm.error" class="error-wrapper">
     <img src="images/e.png" />

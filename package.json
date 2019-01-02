@@ -15,7 +15,7 @@
   "main": "public/index.html",
   "scripts": {
     "frontend-server": "http-serve ./public -p 80",
-    "backend-server": "fah-backend",
+    "backend-server": "fah-backend -p 3000",
     "start": "npm run backend-server | npm run frontend-server"
   },
   "dependencies": {

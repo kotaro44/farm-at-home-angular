@@ -22,13 +22,15 @@
                 Nutrition Facts
               </div>
               <div class="nutrition-fact" ng-repeat="nutritionFact in vm.product.nutritionFacts track by $index">
-                <span class="nutrition-fact-name">{{nutritionFact.name}} </span>
+                <span class="nutrition-fact-name">{{nutritionFact.name}}</span>
                 <span>
                   <span ng-if="nutritionFact.value.value || nutritionFact.value.value === 0">
-                    <span class="nutrition-fact-value">{{nutritionFact.value.value}}{{nutritionFact.value.unit}}</span>
+                    <span>{{nutritionFact.value.value}}{{nutritionFact.value.unit}}</span>
                     <span class="nutrition-fact-per">{{nutritionFact.value.per}}</span>
                   </span>
-                  <span class="nutrition-fact-per" ng-if="!nutritionFact.value.value && nutritionFact.value.value !== 0">{{nutritionFact.value}}</span>
+                  <span class="nutrition-fact-per" ng-if="!nutritionFact.value.value && nutritionFact.value.value !== 0">
+                    {{nutritionFact.value}}
+                  </span>
                 </span>
               </div>
             </div>

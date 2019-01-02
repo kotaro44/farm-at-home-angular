@@ -3,7 +3,7 @@
 /**
  * Public available constants for the entire app
  */
-window.App.service('Constants', [function Constants() {
+angular.module('fahAngularJS').service('Constants', [function Constants() {
   return {
     currency: '$',
   };
