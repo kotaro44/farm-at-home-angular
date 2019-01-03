@@ -1,5 +1,5 @@
 <div class="product-list-wrapper">
-  <input class="search-input" type="text" placeholder="Search by name..." [(ngModel)]="search"/>{{productId}}
+  <input class="search-input" type="text" placeholder="Search by name..." [(ngModel)]="search"/>
   <div class="row product-list" *ngIf="!error">
     <span
       *ngFor="let product of placeholders"
