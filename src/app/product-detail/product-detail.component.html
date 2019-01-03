@@ -1,0 +1,60 @@
+<div class="row product-detail" [ngClass]="{'in-modal': inModal}">
+  <div class="detail-content-wrapper">
+    <div class="detail-content">
+      <div class="detail-name-wrapper">
+        <span *ngIf="!isLoading">
+          <span *ngIf="!error">
+            <div class="product-detail-name-wrapper">
+              <div class="product-detail-name">{{product.name || '???'}}</div>
+              <div class="sharable-link" (click)="copy2clipboard()" [ngClass]="{'shared': copied}"></div>
+            </div>
+          </span>
+          <span *ngIf="error">Error</span>
+        </span>
+        <img *ngIf="isLoading" src="{{loaderSrc}}">
+      </div>
+      <div class="detail-description-wrapper">
+        <span *ngIf="!isLoading">
+          <span *ngIf="!error">
+            <div class="detail-description">{{product.description || 'No Description'}}</div>
+            <div class="nutrition-facts-wrapper">
+              <div class="detail-name-wrapper">
+                Nutrition Facts
+              </div>
+              <div class="nutrition-fact" *ngFor="let nutritionFact of product.nutritionFacts">
+                <span class="nutrition-fact-name">{{nutritionFact.name}}</span>
+                <span>
+                  <span *ngIf="nutritionFact.value.value || nutritionFact.value.value === 0">
+                    <span>{{nutritionFact.value.value}}{{nutritionFact.value.unit}}</span>
+                    <span class="nutrition-fact-per">{{nutritionFact.value.per}}</span>
+                  </span>
+                  <span class="nutrition-fact-per" *ngIf="!nutritionFact.value.value && nutritionFact.value.value !== 0">
+                    {{nutritionFact.value}}
+                  </span>
+                </span>
+              </div>
+            </div>
+          </span>
+          <span *ngIf="error">We are sorry, but we were not able to get data back from the server...</span>
+        </span>
+        <img *ngIf="isLoading" src="{{loaderSrc}}">
+      </div>
+      <div class="detail-price-wrapper">
+        <span *ngIf="!isLoading && !error">
+          {{constants.currency + (product.price.toFixed(2) || '??')}}
+        </span>
+        <img *ngIf="isLoading" src="{{loaderSrc}}">
+      </div>
+    </div>
+  </div>
+  <div class="detail-image-wrapper">
+    <span *ngIf="!isLoading">
+      <span *ngIf="!error">
+        <img *ngIf="product.image" src="{{product.image}}" />
+        <img *ngIf="!product.image" src="assets/images/u.png" />
+      </span>
+      <img *ngIf="error" src="assets/images/e.png" />
+    </span>
+    <img *ngIf="isLoading" class="detail-img-placeholer" src="assets/images/p.gif">
+  </div>
+</div>

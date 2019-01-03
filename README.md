@@ -1,6 +1,6 @@
 # farm-at-home-angular
 
-This is an AngularJS Demo, to run the project you only need to clone the repository, once cloned inside the repo folder just run the command:
+This is an Angular Demo, to run the project you only need to clone the repository, once cloned inside the repo folder just run the command:
 
 ```javascript
 $ npm install
@@ -13,7 +13,7 @@ To start the App run the following command:
 $ npm start
 ```
 
-The command will run simultaneously the Backend server by default on port 3000 and the frontend on port 80,
+The command will run simultaneously the Backend server by default on port 3000 and the frontend on port 8083,
 so you can access both services from http://localhost
 
 ## requirements

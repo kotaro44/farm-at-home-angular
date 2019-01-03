@@ -1,0 +1,24 @@
+<div class="fah-product-wrapper">
+  <div class="box-shadow product-content" *ngIf="product" (click)="goToProductDetail(product.productId)">
+    <div class="product-name">
+      {{(product.name || '???')}}
+    </div>
+    <div class="product-image">
+      <span>
+        <img *ngIf="product.image" src="{{product.image}}">
+        <img *ngIf="!product.image" src="assets/images/u.png">
+      </span>
+      <span class="product-price">
+        {{constants.currency + (product.price.toFixed(2) || '??')}}
+      </span>
+    </div>
+  </div>
+  <div class="box-shadow product-content" *ngIf="!product">
+    <div class="product-name">
+      <img src="assets/images/a.gif">
+    </div>
+    <div class="product-image product-placeholder">
+      <img src="assets/images/p.gif">
+    </div>
+  </div>
+</div>

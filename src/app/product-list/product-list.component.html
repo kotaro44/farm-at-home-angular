@@ -1,0 +1,37 @@
+<div class="product-list-wrapper">
+  <input class="search-input" type="text" placeholder="Search by name..." [(ngModel)]="search"/>{{productId}}
+  <div class="row product-list" *ngIf="!error">
+    <span
+      *ngFor="let product of placeholders"
+      class="column product-placeholder"
+      >
+      <app-fah-product-card *ngIf="isLoading"></app-fah-product-card>
+    </span>
+    <span
+      *ngFor="let product of products"
+      [ngClass]="{'have-product-id': !!product.productId}"
+      class="column product-wrapper"
+      >
+      <app-fah-product-card [product]="product" [click]="openDetail.bind(this)" *ngIf="!isLoading"></app-fah-product-card>
+    </span>
+  </div>
+  <div *ngIf="!isLoading && !(products | filter:search).length" class="error-wrapper">
+    <div>No products found!</div>
+  </div>
+  <div *ngIf="!isLoading && error" class="error-wrapper">
+    <img src="assets/images/e.png" />
+    <div>We are so sorry, but there was an error trying to load the products...</div>
+  </div>
+  <div *ngIf="!isLoading && products.length === 0" class="error-wrapper">
+    <img src="assets/images/e.png" />
+    <div>We are so sorry, but seems there are no available products for now.</div>
+  </div>
+  <div class="modal-wrapper" *ngIf="productId">
+    <div class="modal-content-wrapper">
+      <div class="close-btn" (click)="closeModal()">X</div>
+      <div class="modal-content">
+        <app-product-detail [productId]="productId" [inModal]="true"></app-product-detail>
+      </div>
+    </div>
+  </div>
+</div>
