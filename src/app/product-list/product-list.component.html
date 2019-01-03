@@ -8,7 +8,7 @@
       <app-fah-product-card *ngIf="isLoading"></app-fah-product-card>
     </span>
     <span
-      *ngFor="let product of products"
+      *ngFor="let product of products | filter:search"
       [ngClass]="{'have-product-id': !!product.productId}"
       class="column product-wrapper"
       >

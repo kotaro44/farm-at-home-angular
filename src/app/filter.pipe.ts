@@ -4,7 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(objects: object[], name: string): any {
-    return objects.filter((listing: any) => listing.name.match(name));
+  transform(objects: object[], text: string): any {
+    return objects.filter((object: any) => {
+      return object.name.match(text);
+    });
   }
 }
